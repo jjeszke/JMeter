@@ -46,7 +46,7 @@ class jmeter(object):
     @cherrypy.expose
     def pole(self, promien = None):
         """
-        Zadanie numer 2 - celowo dodany zostal time.sleep(10), tak by czas requestow byl zbyt dlugi.
+        Zadanie numer 2 - celowo dodany zostal time.sleep(5), tak by czas requestow byl zbyt dlugi.
         """
         try:
             if promien is None:
@@ -54,7 +54,7 @@ class jmeter(object):
                 <br><br>Przykładowa odpowiedź:<b> Pole wynosi: 12.56 </b>
                 <br><br>Tak jak przy poprzednim zadaniu, przetestuj ten request z wykorzystaniem JMetera (pamiętaj o wszystkich asercjach)!"""
             if float(promien) > 0:
-                time.sleep(10)
+                time.sleep(5)
                 return "Pole wynosi: {}".format(str(PI*math.pow(float(promien),2)))
             else:
                 return "Na pewno zrobiles wszystko dobrze?"
@@ -66,16 +66,18 @@ class jmeter(object):
     def data(self, dni = None):
         """
         Zadanie numer 3 - time.sleep z randomem, celowy błąd w odpowiedzi (powinno to zostać dostrzeżone przez asercje w JMeterze).
+        Doddatkowo w zadaniu trzeba wykorzystać HTTP Cookie Managera w JMeterze.
         """
         try:
             if dni is None:
-                return """<b>Request POST, numer 3.</b><br><br> Request zwraca datę dzisiejszą powiększoną o ilości dni podaną w argumencie.
-                Nazwa tego argumentu to po prostu "dni" i przyjmuje wartości całkowite większe od 0
-                <br> Odpowiedź powinna zostać zwrócona w formacie: YYYY-MM-DD (na przykład: 2014-09-15)
-                <br><br>Tak jak przy poprzednich zadaniach, przetestuj ten request z wykorzystaniem JMetera (pamiętaj o wszystkich asercjach)
+                return """ Request POST, numer 3. Request zwraca datę dzisiejszą powiększoną o ilości dni podaną w argumencie.
+                Nazwa tego argumentu to po prostu "dni" i przyjmuje wartości całkowite większe od 0.
+                Dodatkowo musisz dodać ciasteczko o nazwie "test" i wartości "workshop".
+                Odpowiedź powinna zostać zwrócona w formacie: YYYY-MM-DD (na przykład: 2014-09-15)
+                Tak jak przy poprzednich zadaniach, przetestuj ten request z wykorzystaniem JMetera (pamiętaj o wszystkich asercjach)
                 """
-            if int(dni) > 0:
-                time.sleep(random.choice([1,2,3,8,9,10]))
+            if int(dni) > 0 and str(cherrypy.request.cookie.get('test').value) == "workshop":
+                time.sleep(random.choice([0,1,2,3,4]))
                 return str(date.today() + timedelta(days = int(dni) + 10))
             else:
                 return "Na pewno zrobiles wszystko dobrze?"
