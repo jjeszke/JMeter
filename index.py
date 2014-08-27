@@ -78,7 +78,7 @@ class jmeter(object):
                 """
             if int(dni) > 0 and str(cherrypy.request.cookie.get('test').value) == "workshop":
                 time.sleep(random.choice([0,1,2,3,4]))
-                return str(date.today() + timedelta(days = int(dni) + 10))
+                return str(date.today() + timedelta(days = int(dni) + 1))
             else:
                 return "Na pewno zrobiles wszystko dobrze?"
         except:
