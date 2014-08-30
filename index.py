@@ -24,6 +24,16 @@ class jmeter(object):
             wszystkcih czterech requestów.<br><br><b>POWODZENIA</b>""".format(IP)
 
     @cherrypy.expose
+    def przyklad(self, argument = None):
+        try:
+            if argument is None:
+                return """To jest przykladowy request GET, podaj cokolwiek jako argument. Nazwa argumentu to... "argument" ;)"""
+            else:
+                return "Prawidłowo podałeś argument"
+        except:
+            return "ZLE!"
+
+    @cherrypy.expose
     def obwod(self, radius = None):
         """
         Zadanie numer 1 - prosty get z jednym argumentem, uczestnik musi zweryfikowac czas requesta oraz zawartosc odpowiedzi.
