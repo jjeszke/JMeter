@@ -7,7 +7,7 @@ import math
 import random
 from datetime import timedelta, date
 PI = 3.14
-IP= "D01004649"
+IP= "D01001484"
 PORT = 9999
 
 class jmeter(object):
