@@ -6,6 +6,8 @@ import time
 import math
 import random
 from datetime import timedelta, date
+
+
 PI = 3.14
 IP= "D01001484"
 PORT = 9999
@@ -15,14 +17,14 @@ class jmeter(object):
     @cherrypy.expose
     def index(self):
         return """<b>To jest prosta aplikacji, dzięki której nauczysz się podstaw JMetera.</b> <br><br> Zadanie na dzisiaj
-            składa się z 4 requestów, które musisz przetestować, ich nazwy to "obwod", "pole, "data" i "numer-4". <br> Aby zobaczyć
+            składa się z trzech requestów, które musisz przetestować, ich nazwy to "obwod", "pole" i "data". <br> Aby zobaczyć
             krótką dokumentację dotyczącą każdego z requestów, wykonanaj go bez podania argumentu, na przykład
             "{}:{}/obwod". <br> Pierwsze dwa requesty ("obwod" i "pole") to requesty typu GET. W celu zaznajomienia się
-            z ich dokumentacją, wykonaj je z poziomu paska adresu jakiejkolwiek przeglądarki. <br> Trzeci i czwarty
-            request ("data" i "numer-4") to requesty typu POST. Z wykorzystaniem odpowiednich dodatków je również możesz
+            z ich krótką dokumentacją, wykonaj je z poziomu paska adresu jakiejkolwiek przeglądarki. <br> Trzeci, ostatni
+            request ("data") to request typu POST. Z wykorzystaniem odpowiednich dodatków również możesz go
             wykonać z poziomu przeglądarki, ale proszę Cię abyś wykorzystał do tego samego JMetera. <br><br>
             Celem dzisiejszego workshopu jest przetestowanie czasu odpowiedzi, kodu statusu HTML oraz samej odpowiedzi
-            wszystkcih czterech requestów.<br><br><b>POWODZENIA</b>""".format(IP, PORT)
+            wszystkcih trzech requestów.<br><br><b>POWODZENIA</b>""".format(IP, PORT)
 
     @cherrypy.expose
     def przyklad(self, argument = None):
