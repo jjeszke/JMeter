@@ -24,7 +24,7 @@ class jmeter(object):
             request ("data") to request typu POST. Z wykorzystaniem odpowiednich dodatków również możesz go
             wykonać z poziomu przeglądarki, ale proszę Cię abyś wykorzystał do tego samego JMetera. <br><br>
             Celem dzisiejszego workshopu jest przetestowanie czasu odpowiedzi, kodu statusu HTML oraz samej odpowiedzi
-            wszystkcih trzech requestów.<br><br><b>POWODZENIA</b>""".format(IP, PORT)
+            wszystkich trzech requestów.<br><br><b>POWODZENIA</b>""".format(IP, PORT)
 
     @cherrypy.expose
     def przyklad(self, argument = None):
