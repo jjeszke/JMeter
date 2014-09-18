@@ -96,5 +96,6 @@ class jmeter(object):
                 return "Na pewno zrobiles wszystko dobrze?"
         except:
             return "ZLE!"
-cherrypy.config.update({'server.socket_port': PORT})
+cherrypy.config.update({'server.socket_host': '172.16.46.12',
+                        'server.socket_port': PORT})
 cherrypy.quickstart(jmeter())
