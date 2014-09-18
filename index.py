@@ -7,7 +7,8 @@ import math
 import random
 from datetime import timedelta, date
 PI = 3.14
-IP= "D001000"
+IP= "D01004649"
+PORT = 9999
 
 class jmeter(object):
 
@@ -16,12 +17,12 @@ class jmeter(object):
         return """<b>To jest prosta aplikacji, dzięki której nauczysz się podstaw JMetera.</b> <br><br> Zadanie na dzisiaj
             składa się z 4 requestów, które musisz przetestować, ich nazwy to "obwod", "pole, "data" i "numer-4". <br> Aby zobaczyć
             krótką dokumentację dotyczącą każdego z requestów, wykonanaj go bez podania argumentu, na przykład
-            "{}:8080/obwod". <br> Pierwsze dwa requesty ("obwod" i "pole") to requesty typu GET. W celu zaznajomienia się
+            "{}:{}/obwod". <br> Pierwsze dwa requesty ("obwod" i "pole") to requesty typu GET. W celu zaznajomienia się
             z ich dokumentacją, wykonaj je z poziomu paska adresu jakiejkolwiek przeglądarki. <br> Trzeci i czwarty
             request ("data" i "numer-4") to requesty typu POST. Z wykorzystaniem odpowiednich dodatków je również możesz
             wykonać z poziomu przeglądarki, ale proszę Cię abyś wykorzystał do tego samego JMetera. <br><br>
             Celem dzisiejszego workshopu jest przetestowanie czasu odpowiedzi, kodu statusu HTML oraz samej odpowiedzi
-            wszystkcih czterech requestów.<br><br><b>POWODZENIA</b>""".format(IP)
+            wszystkcih czterech requestów.<br><br><b>POWODZENIA</b>""".format(IP, PORT)
 
     @cherrypy.expose
     def przyklad(self, argument = None):
@@ -42,10 +43,10 @@ class jmeter(object):
             if radius is None:
                 return """<b>Request GET, numer 1.</b><br> Nazwa argumentu, którą trzeba podać do obliczenia pola koła jest "radius" i jego wartość musi on być większa od 0.
                 <br><br>Na początek spróbuj w pasku adresu przeglądarki wpisać dane requestu wraz z argumentem, niedługo później powinieneś zobaczyć odpowiedź.
-                <br><br>Przykładowy request:<b> http://{}:8080/obwod?radius=5 </b>
+                <br><br>Przykładowy request:<b> http://{}:{}/obwod?radius=5 </b>
                 <br> Odpowiedź:<b> Obwod wynosi: 31.4 </b>
                 <br><br>Teraz czas podany request przetestować z wykorzystaniem JMetera - pamiętaj by przygotować asercję sprawdzającą odpowiedź (czy jest zgodna z przykładem).
-                """.format(IP)
+                """.format(IP, PORT)
             if float(radius) > 0:
                 return "Obwod wynosi: {}".format(str(2*PI*float(radius)))
             else:
@@ -93,5 +94,5 @@ class jmeter(object):
                 return "Na pewno zrobiles wszystko dobrze?"
         except:
             return "ZLE!"
-
+cherrypy.config.update({'server.socket_port': PORT})
 cherrypy.quickstart(jmeter())
