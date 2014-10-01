@@ -6,7 +6,7 @@ import time
 import math
 import random
 from datetime import timedelta, date
-
+import socket
 
 PI = 3.14
 IP= "D01001484"
@@ -96,6 +96,6 @@ class jmeter(object):
                 return "Na pewno zrobiles wszystko dobrze?"
         except:
             return "ZLE!"
-cherrypy.config.update({'server.socket_host': '172.16.46.12',
+cherrypy.config.update({'server.socket_host': socket.gethostbyname(socket.gethostname()),
                         'server.socket_port': PORT})
 cherrypy.quickstart(jmeter())
